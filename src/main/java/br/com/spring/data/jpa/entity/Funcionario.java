@@ -1,35 +1,49 @@
 package br.com.spring.data.jpa.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Funcionario {
+@Entity
+@Table(name = "FUNCIONARIO")
+public class Funcionario extends Audit {
 
+    @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @Column(name = "ID_FUNCIONARIO")
     private Long id;
 
+    @NotNull
+    @Column(name = "ID_FISCAL")
     private String identificaoFiscal;
 
+    @NotNull
+    @Column(name = "MATRICULA")
     private String matricula;
 
+    @NotNull
+    @Column(name = "NOME_COMPLETO")
     private String nomeCompleto;
 
+    @NotNull
+    @Column(name = "DATA_NASCIMENTO")
     private LocalDate dataNascimento;
 
+    @NotNull
+    @Column(name = "DATA_INICIO")
     private LocalDate dataInicio;
 
+    @Column(name = "DATA_FIM")
     private LocalDate dataFim;
 
+    @NotNull
+    @Column(name = "SALARIO_BASE", precision = 12, scale = 2)
     private BigDecimal salarioBase;
 
-    //Dados de auditoria...
-
-    private LocalDate dataRegistro;
-
-    private String ipOperador;
-
-    private LocalDate dataModificação;
-
-    private String situacao;
+    @ManyToOne
+    @JoinColumn(name = "id_cargo_fk", referencedColumnName = "id_cargo")
+    private Cargo cargo;
 
     public Long getId() {
         return id;
@@ -95,35 +109,4 @@ public class Funcionario {
         this.salarioBase = salarioBase;
     }
 
-    public LocalDate getDataRegistro() {
-        return dataRegistro;
-    }
-
-    public void setDataRegistro(LocalDate dataRegistro) {
-        this.dataRegistro = dataRegistro;
-    }
-
-    public String getIpOperador() {
-        return ipOperador;
-    }
-
-    public void setIpOperador(String ipOperador) {
-        this.ipOperador = ipOperador;
-    }
-
-    public LocalDate getDataModificação() {
-        return dataModificação;
-    }
-
-    public void setDataModificação(LocalDate dataModificação) {
-        this.dataModificação = dataModificação;
-    }
-
-    public String getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
 }
