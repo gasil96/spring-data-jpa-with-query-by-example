@@ -19,11 +19,12 @@ public class FuncionarioService implements IFuncionarioService {
 
     @Override
     public void alterar(Funcionario funcionario) throws Exception {
-        if (this.buscarPorId(funcionario.getId()).isPresent()) {
+        if (funcionarioRepository.existsById(funcionario.getId())) {
             funcionarioRepository.save(funcionario);
-        } else {
-            throw new Exception("Não foi possível localizar nenhum fúncionario de id: "+ funcionario.getId());
+            return;
         }
+        throw new Exception("Não foi possível localizar nenhum funcionário de ID: " +
+                funcionario.getId() + "para ser atualizado");
     }
 
     @Override

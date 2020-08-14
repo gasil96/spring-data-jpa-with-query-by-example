@@ -22,7 +22,6 @@ public abstract class Audit {
     @Column(name = "IP_OPERADOR")
     private String ipOperador;
 
-    @NotNull
     @Column(name = "DATA_MODIFICACAO")
     @LastModifiedDate
     private LocalDate dataModificação;
