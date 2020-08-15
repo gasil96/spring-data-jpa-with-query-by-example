@@ -41,6 +41,7 @@ public class Funcionario extends Audit {
     @Column(name = "SALARIO_BASE", precision = 12, scale = 2)
     private BigDecimal salarioBase;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_cargo_fk", referencedColumnName = "id_cargo")
     private Cargo cargo;
@@ -57,8 +58,8 @@ public class Funcionario extends Audit {
         return identificacaoFiscal;
     }
 
-    public Cargo getCargo() {
-        return cargo;
+    public void setIdentificacaoFiscal(String identificacaoFiscal) {
+        this.identificacaoFiscal = identificacaoFiscal;
     }
 
     public String getMatricula() {
@@ -109,4 +110,11 @@ public class Funcionario extends Audit {
         this.salarioBase = salarioBase;
     }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
 }

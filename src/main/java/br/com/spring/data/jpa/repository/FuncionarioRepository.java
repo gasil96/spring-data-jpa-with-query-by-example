@@ -19,7 +19,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     @Query("SELECT f FROM Funcionario f WHERE LOWER(f.identificacaoFiscal) = LOWER(:identificacaoFiscal)")
     List<Funcionario> buscarPorIdFiscalFormaManual(@Param("identificacaoFiscal") String identificacaoFiscal); //FORMA MANUAL
 
-    @Query(value = "SELECT * FROM FUNCIONARIO f WHERE f.identificacaoFiscal = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM FUNCIONARIO f WHERE f.ID_FISCAL = ?1", nativeQuery = true)
     List<Funcionario> buscarPorIdFiscalFormaNativa(String identificacaoFiscal); //FORMA NATIVA
 
     // ---------------------------------------------------------------------

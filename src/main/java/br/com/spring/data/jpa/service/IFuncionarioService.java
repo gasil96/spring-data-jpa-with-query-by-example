@@ -20,6 +20,8 @@ public interface IFuncionarioService {
 
     List<Funcionario> buscarTodos();
 
+    //-------------------------------------------------------------------------------------
+
     List<Funcionario> buscarPorIdenFiscalAutomatica(String idFiscal);
 
     List<Funcionario> buscarPorIdenFiscalManual(String idFiscal);
