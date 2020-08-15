@@ -5,22 +5,22 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
 
     /**
      * Retorna uma lista de funcionários que possuem a mesma 'identificação fiscal'
-     *
-     * @param identificaoFiscal
+     * @param identificacaoFiscal
      */
-    List<Funcionario> findByidentificaoFiscal(String identificaoFiscal); //FORMA AUTOMÁTICA
+    List<Funcionario> findByidentificacaoFiscal(String identificacaoFiscal); //FORMA AUTOMÁTICA
 
-    @Query("SELECT f FROM Funcionario f WHERE LOWER(f.identificaoFiscal) = LOWER(:identificaoFiscal)")
-    List<Funcionario> buscarPorIdFiscalFormaManual(@Param("identificaoFiscal") String identificaoFiscal); //FORMA MANUAL
+    @Query("SELECT f FROM Funcionario f WHERE LOWER(f.identificacaoFiscal) = LOWER(:identificacaoFiscal)")
+    List<Funcionario> buscarPorIdFiscalFormaManual(@Param("identificacaoFiscal") String identificacaoFiscal); //FORMA MANUAL
 
-    @Query(value = "SELECT * FROM FUNCIONARIO f WHERE f.identificaoFiscal = ?1")
-    List<Funcionario> buscarPorIdFiscalFormaNativa(String identificaoFiscal); //FORMA NATIVA
+    @Query(value = "SELECT * FROM FUNCIONARIO f WHERE f.identificacaoFiscal = ?1", nativeQuery = true)
+    List<Funcionario> buscarPorIdFiscalFormaNativa(String identificacaoFiscal); //FORMA NATIVA
 
     // ---------------------------------------------------------------------
 
@@ -29,9 +29,14 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
      *
      * @Param nomeCompleto
      */
-
     List<Funcionario> findByNomeCompletoIgnoreCaseContaining(String nomeCompleto); //FORMA AUTOMÁTICA
 
-    //TODO CONTINUAR
+    /**
+     * Retorna Uma Lista de funcionários contratados dentro do período estipulado
+     *
+     * @Param dataInicioStart
+     * @Param dataInicioEnd
+     */
+    List<Funcionario> findAllBydataInicioBetween(LocalDate dataInicioStart, LocalDate dataInicioEnd); //FORMA AUTOMÁTICA
 
 }

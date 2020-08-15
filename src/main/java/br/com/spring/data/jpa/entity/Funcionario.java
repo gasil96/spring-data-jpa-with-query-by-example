@@ -10,13 +10,13 @@ import java.time.LocalDate;
 public class Funcionario extends Audit {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_FUNCIONARIO")
     private Long id;
 
     @NotNull
     @Column(name = "ID_FISCAL")
-    private String identificaoFiscal;
+    private String identificacaoFiscal;
 
     @NotNull
     @Column(name = "MATRICULA")
@@ -53,12 +53,12 @@ public class Funcionario extends Audit {
         this.id = id;
     }
 
-    public String getIdentificaoFiscal() {
-        return identificaoFiscal;
+    public String getIdentificacaoFiscal() {
+        return identificacaoFiscal;
     }
 
-    public void setIdentificaoFiscal(String identificaoFiscal) {
-        this.identificaoFiscal = identificaoFiscal;
+    public Cargo getCargo() {
+        return cargo;
     }
 
     public String getMatricula() {
