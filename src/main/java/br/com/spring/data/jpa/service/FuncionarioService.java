@@ -71,7 +71,7 @@ public class FuncionarioService implements IFuncionarioService {
     //----------------------------BUSCAR PERÍODO DE INICIO ------------------------------------------------------
     @Override
     public List<Funcionario> buscarPorPeriodo(LocalDate dataInicioStart, LocalDate dataInicoEnd) {
-        return funcionarioRepository.findAllBydataInicioBetween(dataInicioStart, dataInicioStart);
+        return funcionarioRepository.findByDataInicioBetween(dataInicioStart, dataInicioStart);
     }
 
     //----------------------------BUSCAR POR FILTRO ------------------------------------------------------

@@ -12,6 +12,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 
     /**
      * Retorna uma lista de funcionários que possuem a mesma 'identificação fiscal'
+     *
      * @param identificacaoFiscal
      */
     List<Funcionario> findByidentificacaoFiscal(String identificacaoFiscal); //FORMA AUTOMÁTICA
@@ -37,6 +38,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
      * @Param dataInicioStart
      * @Param dataInicioEnd
      */
-    List<Funcionario> findAllBydataInicioBetween(LocalDate dataInicioStart, LocalDate dataInicioEnd); //FORMA AUTOMÁTICA
+    @Query("SELECT f FROM Funcionario f WHERE f.dataInicio BETWEEN :dataInicioStart AND :dataInicioEnd")
+    List<Funcionario> findByDataInicioBetween(@Param("dataInicioStart") LocalDate dataInicioStart,
+                                              @Param("dataInicioEnd") LocalDate dataInicioEnd); //FORMA AUTOMÁTICA
 
 }
