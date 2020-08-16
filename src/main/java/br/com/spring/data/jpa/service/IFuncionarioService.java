@@ -30,7 +30,9 @@ public interface IFuncionarioService {
 
     List<Funcionario> buscarPorLikeNomeCompleto(String nomeCompleto);
 
-    List<Funcionario> buscarPorPeriodo(LocalDate dataInicioStart, LocalDate dataInicoEnd);
+    List<Funcionario> buscarPorPeriodoManual(LocalDate dataInicioStart, LocalDate dataInicoEnd);
+
+    List<Funcionario> buscarPorPeriodoAutomatico(LocalDate dataInicioStart, LocalDate dataInicoEnd);
 
     List<Funcionario> buscarFuncionarioPorFiltro(Funcionario example);
 
