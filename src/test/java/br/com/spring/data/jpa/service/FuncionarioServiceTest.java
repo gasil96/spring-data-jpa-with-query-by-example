@@ -1,20 +1,15 @@
 package br.com.spring.data.jpa.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import br.com.spring.data.jpa.Application;
-import br.com.spring.data.jpa.entity.Cargo;
 import br.com.spring.data.jpa.entity.Funcionario;
-import br.com.spring.data.jpa.repository.FuncionarioRepository;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(classes = Application.class)
 @EnableJpaRepositories
