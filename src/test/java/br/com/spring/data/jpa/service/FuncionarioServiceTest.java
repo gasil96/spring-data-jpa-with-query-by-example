@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import br.com.spring.data.jpa.Application;
 import br.com.spring.data.jpa.entity.Cargo;
 import br.com.spring.data.jpa.entity.Funcionario;
+import br.com.spring.data.jpa.repository.FuncionarioRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,9 @@ public class FuncionarioServiceTest {
 
     @Autowired
     FuncionarioService funcionarioService;
+
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
 
     @Test
     public void testbuscarPorIdenFiscalAutomatica() {
@@ -51,12 +55,20 @@ public class FuncionarioServiceTest {
     }
 
     @Test
-    public void testbuscarPorPeriodo(){
+    public void testbuscarPorPeriodoManual(){
         LocalDate dataInicioStart = LocalDate.parse("2015-01-01",formatter);
         LocalDate dataInicioEnd = LocalDate.parse("2015-12-31",formatter);
         System.out.println("dataInicio: "+dataInicioStart+" dataFim:"+ dataInicioEnd+" dataAgora:"+LocalDate.now());
         System.out.println(funcionarioService.buscarPorPeriodo(dataInicioStart, dataInicioEnd));
         assertEquals(3, funcionarioService.buscarPorPeriodo(dataInicioStart, dataInicioEnd).size());
+    }
+    @Test
+    public void testbuscarPorPeriodoAutomatico(){
+        LocalDate dataInicioStart = LocalDate.parse("2015-01-01",formatter);
+        LocalDate dataInicioEnd = LocalDate.parse("2015-12-31",formatter);
+        System.out.println("dataInicio: "+dataInicioStart+" dataFim:"+ dataInicioEnd+" dataAgora:"+LocalDate.now());
+        System.out.println(funcionarioRepository.findPeriodo(dataInicioStart, dataInicioEnd));
+        assertEquals(3, funcionarioRepository.findByDataInicioBetween(dataInicioStart, dataInicioEnd).size());
     }
 
     @Test

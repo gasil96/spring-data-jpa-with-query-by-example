@@ -39,7 +39,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
      * @Param dataInicioEnd
      */
     @Query("SELECT f FROM Funcionario f WHERE f.dataInicio BETWEEN :dataInicioStart AND :dataInicioEnd")
-    List<Funcionario> findByDataInicioBetween(@Param("dataInicioStart") LocalDate dataInicioStart,
-                                              @Param("dataInicioEnd") LocalDate dataInicioEnd); //FORMA AUTOMÁTICA
+    List<Funcionario> findPeriodo(@Param("dataInicioStart") LocalDate dataInicioStart,
+                                  @Param("dataInicioEnd") LocalDate dataInicioEnd); //FORMA AUTOMÁTICA
+
+    List<Funcionario> findByDataInicioBetween(LocalDate dataInicioStart, LocalDate dataInicoEnd);
 
 }

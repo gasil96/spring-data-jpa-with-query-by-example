@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -71,7 +72,7 @@ public class FuncionarioService implements IFuncionarioService {
     //----------------------------BUSCAR PERÍODO DE INICIO ------------------------------------------------------
     @Override
     public List<Funcionario> buscarPorPeriodo(LocalDate dataInicioStart, LocalDate dataInicoEnd) {
-        return funcionarioRepository.findByDataInicioBetween(dataInicioStart, dataInicioStart);
+        return funcionarioRepository.findPeriodo(dataInicioStart, dataInicoEnd);
     }
 
     //----------------------------BUSCAR POR FILTRO ------------------------------------------------------
